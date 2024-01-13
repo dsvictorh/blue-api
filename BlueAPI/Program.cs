@@ -1,5 +1,6 @@
 using BlueAPI;
 using BlueAPI.Data;
+using BlueAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +13,13 @@ builder.Services.AddControllers()
         };
     });
 
-var app = builder.Build();
-
 //SERVICES
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<BlueDB>();
+
+var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseCors(options =>

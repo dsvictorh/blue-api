@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace BlueAPI
+namespace BlueAPI.Controllers
 {
     [Route("errors")]
     [ApiController]
@@ -10,16 +10,18 @@ namespace BlueAPI
     {
 
         [Route("{statusCode}")]
-        public ObjectResult HnadleStatus(HttpStatusCode statusCode)
-        { 
+        public ObjectResult HandleStatus(HttpStatusCode statusCode)
+        {
             APIResponse response = new()
-            { 
+            {
                 StatusCode = statusCode,
                 Success = false
             };
-        
+
+            //SWITCH DE STATUS CODE
+
             ObjectResult result = new(response)
-            { 
+            {
                 StatusCode = (int)statusCode
             };
 
